@@ -49,7 +49,6 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
 
-
                     const SizedBox (height: 32),
 
                     // 2. Titulo de la lista
@@ -62,35 +61,88 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
 
-                    SizedBox(height: 8.0),
+                    SizedBox(height: 16),
                     
-                    Text(
-                      '\$14.250',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    // 3. Lista de gastos
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          _GastosCard(icono: '☕', nombre: 'Starbucks', categoria: 'Comidas & Bebidas', precio: '$ 6.50', hora: '9:15 AM'),
+                          _GastosCard(icono: '🚕', nombre: 'Uber', categoria: 'Transporte', precio: '\$2.75', hora: '11:30 AM'),
+                          _GastosCard(icono: '🍽️', nombre: 'Almuerzo', categoria: 'Comidas & Bebidas', precio: '\$5.25', hora: '1:30 PM'),
+                        ],
+                    )
+
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
-              ElevatedButton(
+
+              // 4. Botón para agregar gasto
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: 56,
+              child: FloatingActionButton(
                 onPressed: () {
                   // Acción al presionar el botón
                 },
-                child: const Text('Agregar gasto'),
+                backgroundColor: salmonColor,
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                label: const Text(
+                  '+ Agregar gasto',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),                
               ),
             ],
           ),
         ),
       )
-      appBar: AppBar(
-        title: const Text('Gastos App'),
-      ),
-      body: const Center(
-        child: Text('Bienvenido a la aplicación de gastos'),
+      
+    );
+  }
+}
+
+class _GastosCard extends StatelessWidget {
+  final String icono;
+  final String nombre;
+  final String categoria;
+  final String precio;
+  final String hora;
+
+  const _GastosCard({
+    required this.icono,
+    required this.nombre,
+    required this.categoria,
+    required this.precio,
+    required this.hora,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      child: ListTile(
+        leading: Text(
+          icono,
+          style: const TextStyle(fontSize: 24),
+        ),
+        title: Text(nombre),
+        subtitle: Text(categoria),
+        trailing: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(precio, style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text(hora, style: const TextStyle(fontSize: 12)),
+          ],
+        ),
       ),
     );
   }
