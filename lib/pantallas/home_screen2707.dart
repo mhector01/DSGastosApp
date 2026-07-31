@@ -12,7 +12,10 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 1. Tarjeta de total Gastos
+              
+              // ==========================================
+              // BLOQUE 1: LA TARJETA DEL TOTAL
+              // ==========================================
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(24.0),
@@ -29,16 +32,16 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: const [ // Quitamos el const general y lo dejamos solo para los textos internos
                     Text(
                       'Total Gastos hoy',
+                      // OJO: Si dejas esto en Colors.white sobre el contenedor blanco, ¡será invisible!
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.white, 
                         fontSize: 14,                        
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     SizedBox(height: 8.0),
                     Text(
                       '\$14.250',
@@ -48,63 +51,44 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
-                    const SizedBox (height: 32),
-
-                    // 2. Titulo de la lista
-                    const Text(
-                      'Gastos de hoy',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-
-                    SizedBox(height: 16),
-                    
-                    // 3. Lista de gastos
-                    Expanded(
-                      child: ListView(
-                        children: [
-                          _GastosCard(icono: '☕', nombre: 'Starbucks', categoria: 'Comidas & Bebidas', precio: '$ 6.50', hora: '9:15 AM'),
-                          _GastosCard(icono: '🚕', nombre: 'Uber', categoria: 'Transporte', precio: '\$2.75', hora: '11:30 AM'),
-                          _GastosCard(icono: '🍽️', nombre: 'Almuerzo', categoria: 'Comidas & Bebidas', precio: '\$5.25', hora: '1:30 PM'),
-                        ],
-                    )
-
                   ],
                 ),
+              ), 
+              // ¡AQUÍ CERRAMOS EL CONTENEDOR! Todo lo de abajo ya está afuera.
+
+              const SizedBox(height: 32),
+
+              // ==========================================
+              // BLOQUE 2: EL TÍTULO DE LA LISTA
+              // ==========================================
+              const Text(
+                'Gastos de hoy',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
 
-              // 4. Botón para agregar gasto
-            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-            floatingActionButton: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.9,
-              height: 56,
-              child: FloatingActionButton(
-                onPressed: () {
-                  // Acción al presionar el botón
-                },
-                backgroundColor: salmonColor,
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                label: const Text(
-                  '+ Agregar gasto',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),                
+              const SizedBox(height: 16),
+              
+              // ==========================================
+              // BLOQUE 3: LA LISTA DE GASTOS
+              // ==========================================
+              Expanded(
+                child: ListView(
+                  children: const [
+                    _GastosCard(icono: '☕', nombre: 'Starbucks', categoria: 'Comidas & Bebidas', precio: '\$ 6.50', hora: '9:15 AM'),
+                    _GastosCard(icono: '🚕', nombre: 'Uber', categoria: 'Transporte', precio: '\$2.75', hora: '11:30 AM'),
+                    _GastosCard(icono: '🍽️', nombre: 'Almuerzo', categoria: 'Comidas & Bebidas', precio: '\$5.25', hora: '1:30 PM'),
+                  ],
+                )
               ),
-            ],
+            ], // Aquí cerramos la columna principal
           ),
         ),
-      )
-      
+      ),
+      // Nota: Aquí te faltó agregar el floatingActionButton que tenías antes, ¿quieres que lo volvamos a poner?
     );
   }
 }

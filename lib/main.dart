@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pantallas/home_screen.dart';
+import 'pantallas/home_screen2707.dart';
 
 void main() {
   runApp(const GastosApp());
