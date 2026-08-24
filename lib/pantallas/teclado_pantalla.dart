@@ -181,7 +181,7 @@ class _TecladoPantallaState extends State<TecladoPantalla> {
                                     ? 'Gasto'
                                     : conceptoController.text.trim();
 
-                                final caja = Hive.box('caja_gastos');
+                                final caja = Hive.box<Gasto>('caja_gastos');
                                 final gasto = Gasto(
                                   concepto: concepto,
                                   monto: monto,
